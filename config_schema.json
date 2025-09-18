@@ -63,6 +63,15 @@
     "info": "可以指定自建目录"
   },
   {
+    "name": "ARCHIVE_UPDATE_INTERVAL",
+    "prompt": "离线元数据的更新间隔",
+    "default": 168,
+    "type": "integer",
+    "required": false,
+    "validator": "",
+    "info": "单位为小时的整数值, 置为 0 表示不检查离线元数据更新"
+  },
+  {
     "name": "BANGUMI_KOMGA_SERVICE_TYPE",
     "prompt": "BangumiKomga 服务运行方式",
     "default": "once",
@@ -83,7 +92,7 @@
     "type": "integer",
     "required": false,
     "validator": "",
-    "info": "单位秒"
+    "info": "单位为秒的整数值"
   },
   {
     "name": "BANGUMI_KOMGA_SERVICE_POLL_REFRESH_ALL_METADATA_INTERVAL",
@@ -92,7 +101,70 @@
     "type": "integer",
     "required": false,
     "validator": "",
-    "info": "多少次轮询后执行一次全量刷新"
+    "info": "整数值, 指定多少次轮询后执行一次全量刷新"
+  },
+  {
+    "name": "USE_BANGUMI_THUMBNAIL",
+    "prompt": "是否使用 Bangumi 封面替换系列海报",
+    "default": false,
+    "type": "boolean",
+    "required": false,
+    "validator": "",
+    "info": "设置为`True`且未曾上传过系列海报时，使用 Bangumi 封面替换系列海报"
+  },
+  {
+    "name": "USE_BANGUMI_THUMBNAIL_FOR_BOOK",
+    "prompt": "是否使用 Bangumi 封面替换单册海报",
+    "default": false,
+    "type": "boolean",
+    "required": false,
+    "validator": "",
+    "info": "设置为`True`且未曾上传过单册海报时，使用 Bangumi 封面替换单册海报"
+  },
+  {
+    "name": "SORT_TITLE",
+    "prompt": "添加一个首字母用于导航",
+    "default": false,
+    "type": "boolean",
+    "required": false,
+    "validator": "",
+    "info": "设置为`True`时，在刷新元数据后会在系列元数据-排序标题前添加一个首字母用于导航。此为临时方案"
+  },
+  {
+    "name": "FUZZ_SCORE_THRESHOLD",
+    "prompt": "过滤搜索结果的相似度阈值",
+    "default": 80,
+    "type": "integer",
+    "required": false,
+    "validator": "",
+    "info": "整数值, 满分 100，默认值`80`。用于过滤搜索结果"
+  },
+  {
+    "name": "RECHECK_FAILED_SERIES",
+    "prompt": "重新检查刷新元数据失败的系列",
+    "default": false,
+    "type": "boolean",
+    "required": false,
+    "validator": "",
+    "info": ""
+  },
+  {
+    "name": "RECHECK_FAILED_BOOKS",
+    "prompt": "重新检查刷新元数据失败的书",
+    "default": false,
+    "type": "boolean",
+    "required": false,
+    "validator": "",
+    "info": ""
+  },
+  {
+    "name": "CREATE_FAILED_COLLECTION",
+    "prompt": "创建失败收藏",
+    "default": false,
+    "type": "boolean",
+    "required": false,
+    "validator": "",
+    "info": "置为`True`时，程序会在刷新完成后，将**本次**刷新失败的系列添加到指定收藏（默认名：`FAILED_COLLECTION`）。"
   },
   {
     "name": "NOTIF_TYPE_ENABLE",
@@ -107,5 +179,50 @@
       "WEBHOOK",
       "HEALTHCHECKS"
     ]
+  },
+  {
+    "name": "NOTIF_GOTIFY_ENDPOINT",
+    "prompt": "GOTIFY 地址",
+    "default": "http://IP:PORT",
+    "type": "url",
+    "required": false,
+    "validator": "validate_url",
+    "info": ""
+  },
+  {
+    "name": "NOTIF_GOTIFY_TOKEN",
+    "prompt": "GOTIFY TOKEN",
+    "default": "TOKEN",
+    "type": "string",
+    "required": false,
+    "validator": "",
+    "info": ""
+  },
+  {
+    "name": "NOTIF_GOTIFY_PRIORITY",
+    "prompt": "GOTIFY 优先级",
+    "default": 1,
+    "type": "integer",
+    "required": false,
+    "validator": "",
+    "info": ""
+  },
+  {
+    "name": "NOTIF_WEBHOOK_ENDPOINT",
+    "prompt": "WEBHOOK 地址",
+    "default": "http://IP:PORT",
+    "type": "url",
+    "required": false,
+    "validator": "validate_url",
+    "info": "比如飞书、钉钉等"
+  },
+  {
+    "name": "NOTIF_HEALTHCHECKS_ENDPOINT",
+    "prompt": "HEALTHCHECKS 地址",
+    "default": "http://IP:PORT",
+    "type": "url",
+    "required": false,
+    "validator": "validate_url",
+    "info": ""
   }
 ]
